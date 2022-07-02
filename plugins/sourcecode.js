@@ -1,6 +1,6 @@
 let handler = async (m, { conn }) => {
 
-    let txt = `SOURCECODE ANON-BOT masih dalam tahap pengembangan, belum tersedia secara publik. Silahkan cari sourcecode BOT yang lain yah kk, atau bisa coba dari dev dibawah ini
+    let txt = `Sourcecode : https://github.com/balhisyhrl/Anon-BOT/
 
 Nurutomo: 
 https://github.com/Nurutomo
