@@ -2,6 +2,7 @@ let handler = async (m, { conn }) => {
 
     let txt = `Sourcecode : https://github.com/balhisyhrl/Anon-BOT/
 
+Sourcecode Developer Lain :
 Nurutomo: 
 https://github.com/Nurutomo
 Istikmal: 
