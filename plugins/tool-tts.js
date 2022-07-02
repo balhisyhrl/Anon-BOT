@@ -7,12 +7,12 @@ const defaultLang = 'id'
 let handler = async (m, { conn, args }) => {
 
   let lang = args[0]
-  let text = args.slice(1).join(' ').replace(listkatakotor, 'Gaboleh Kata Kata Kotor KK')
+  let text = args.slice(1).join(' ').toLowerCase().replace(listkatakotor, 'Gaboleh Kata Kata Kotor KK')
   if ((args[0] || '').length !== 2) {
     lang = defaultLang
-    text = args.join(' ').replace(listkatakotor, 'Gaboleh Kata Kata Kotor KK')
+    text = args.join(' ').toLowerCase().replace(listkatakotor, 'Gaboleh Kata Kata Kotor KK')
   }
-  if (!text && m.quoted && m.quoted.text) text = m.quoted.text.replace(listkatakotor, 'Gaboleh Kata Kata Kotor KK')
+  if (!text && m.quoted && m.quoted.text) text = m.quoted.text.toLowerCase().replace(listkatakotor, 'Gaboleh Kata Kata Kotor KK')
 
   let res
   try { res = await tts(text, lang) }

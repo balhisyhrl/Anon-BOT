@@ -1,9 +1,13 @@
 let handler = async (m, { conn, usedPrefix }) => {
 conn.sendButton(m.chat, `
+╭─「 *DONASI* 」
+│ > Ingin donasi ke BOT?
+│ _Silahkan menghubungi owner_
+│ _https://wa.me/6285156299020_
+│ _Hasil donasi akan dipakai untuk membuat BOT ONLINE 24 JAM_
+╰────
 ╭─「 *NOTE* 」
-│ > Ingin donasi?
-│ _Silahkan berdonasi kepada orang orang yang membutuhkan, misalnya ke panti asuhan, orang kurang mampu, masjid, dsb._
-│ _BOT berjalan dengan biaya owner sendiri, sehingga tidak memerlukan donasi kalian_
+│ > _Tidak ada paksaan untuk kalian berdonasi~_
 ╰────
 `.trim(), wm, 'Menu', usedPrefix + 'menu', m)
 }

@@ -16,9 +16,6 @@ const defaultMenu = {
 ├ Waktu (WIB) : ${Waktu.tz('Asia/Jakarta').format('HH:mm')}
 ├ Waktu (WITA) : ${Waktu.tz('Asia/Makassar').format('HH:mm')}
 ├ Waktu (WIT) : ${Waktu.tz('Asia/Jayapura').format('HH:mm')}
-│
-├ Join Grup ANON-BOT juga ya
-├ https://chat.whatsapp.com/Cd3Mz7mdPHU6RfBan7urkz
 └────
 %readmore`.trim(),
   header: '┌─〔 %category 〕',

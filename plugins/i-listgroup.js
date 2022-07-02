@@ -15,6 +15,7 @@ let handler = async (m, { conn }) => {
 handler.help = ['listgroup', 'listgc']
 handler.tags = ['info']
 handler.command = /^(listgc|listgrup|listgroup|gruplist|grouplist|gclist)$/i
+handler.owner = true
 
 module.exports = handler
 

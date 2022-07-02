@@ -17,8 +17,8 @@ let handler = async (m, {text, usedPrefix, command}) => {
         if (stderr.trim()) m.reply(stderr)
     }
 }
-handler.help = ['']
-handler.tags = ['']
+handler.help = ['osintmail']
+handler.tags = ['python','sptools','update']
 handler.command = /^(osintmail)$/i
 
 module.exports = handler
