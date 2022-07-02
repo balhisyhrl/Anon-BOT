@@ -1,0 +1,15 @@
+{
+  "name": "Anon-BOT",
+  "description": "WhatsApp Bot Using Library Baileys Multi Device",
+  "repository": "https://github.com/balhisyhrl/Anon-BOT",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["bot", "whatsapp", "whatsapp-bot"],
+  "buildpacks": [
+  {"url": "heroku/nodejs"},
+  {"url": "heroku/php"},
+  {"url": "heroku/python"},
+  {"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"},
+  {"url": "https://github.com/yespark/heroku-imagemagick-buildpack"},
+  {"url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"}
+  ]
+}
