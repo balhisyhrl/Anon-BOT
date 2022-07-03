@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 const uploadImage = require('../lib/uploadImage')
 const fetch = require('node-fetch')
 const { getBuffer } = require('../lib/functions')

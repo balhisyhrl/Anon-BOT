@@ -4,7 +4,7 @@ let fs = require('fs')
 let path = require('path')
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-    let ar = ['bass', 'blown', 'deep','earrape', 'fast', 'fat', 'nightcore', 'reverse', 'robot', 'slow', 'smooth', 'tupai']
+    let ar = ['bass', 'blown', 'deep','earrape', 'fast', 'fat', 'nightcore', 'reverse', 'robot', 'slow', 'smooth', 'tupai','vibra']
   let er = `
 ┌「 *Pilihan* 」
 ${ar.map(v => '├ ' + v).join`\n`}
@@ -28,7 +28,8 @@ ${usedPrefix}${command} tupai
         if (/robot/.test(args[0])) set = '-filter_complex "afftfilt=real=\'hypot(re,im)*sin(0)\':imag=\'hypot(re,im)*cos(0)\':win_size=512:overlap=0.75"'
         if (/slow/.test(args[0])) set = '-filter:a "atempo=0.7,asetrate=44100"'
         if (/smooth/.test(args[0])) set = '-filter:v "minterpolate=\'mi_mode=mci:mc_mode=aobmc:vsbmc=1:fps=120\'"'
-        if (/tupai/.test(args[0])) set = '-filter:a "atempo=0.5,asetrate=65100"'
+        if (/tupai|squirrel|chipmunk/.test(args[0])) set = '-filter:a "atempo=0.5,asetrate=65100"'
+        if (/vibra/.test(args[0])) set = '-filter_complex "vibrato=f=15"'
         if (/audio/.test(mime)) {
         m.reply('Tunggu kk')
         let media = await conn.downloadAndSaveMediaMessage(quoted)
@@ -45,9 +46,9 @@ ${usedPrefix}${command} tupai
         m.reply(e)
         }
   }
-  handler.help = ['audio <option>']
+  handler.help = ['audio <option>','voicechanger <option>']
   handler.tags = ['sptools']
-  handler.command = /^(audio|ubahsuara)$/i
+  handler.command = /^(audio|ubahsuara|voicechanger)$/i
   
   module.exports = handler
 

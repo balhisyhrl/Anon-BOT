@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 const { eBinary, dBinary } = require('../lib/binary')
 
 let handler = async (m, { text, usedPrefix, command }) => {

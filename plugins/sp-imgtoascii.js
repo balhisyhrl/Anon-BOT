@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 /*const { promises: fs } = require('fs')
 const { join } = require('path')
 const { braillefy } = require('img2braille')

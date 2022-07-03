@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 const translate = require('translate-google-api')
 const defaultLang = 'id'
 const tld = 'cn'

@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 const imageToBase64 = require('image-to-base64')
 const uploadFile = require('../lib/uploadFile')
 const uploadImage = require('../lib/uploadImage')

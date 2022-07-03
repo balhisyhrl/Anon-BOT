@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 const fetch = require('node-fetch')
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {

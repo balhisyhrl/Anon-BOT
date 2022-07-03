@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 let handler = async (m, { conn, usedprefix, args, command }) => {
     let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
     if(args[0] == '') throw `contoh :\n!${command} username displayname comment`

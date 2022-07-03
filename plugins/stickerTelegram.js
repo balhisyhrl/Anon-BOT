@@ -29,7 +29,7 @@ handler.help = ['stickertele <url>']
 handler.tags = ['sticker']
 handler.command = /^(s(tic?k(er)?)?tele(gram)?|tele(gram)?s(tic?k(er)?)?)$/i
 //handler.private = true
-//handler.limit = true
+//handler.limit = false
 
 module.exports = handler
 

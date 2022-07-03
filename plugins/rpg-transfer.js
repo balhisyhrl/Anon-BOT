@@ -2,7 +2,7 @@ let handler = async (m, { conn, args, usedPrefix, command, DevMode }) => {
     const isNumber = (text) => {
         return text.match(new RegExp(/[0-9]/, 'gi'))
       }
-    let ar = ['limit', 'money', 'potion', 'sampah','diamond', 'common', 'uncommon', 'mythic', 'legendary']
+    let ar = ['exp','limit', 'money', 'potion', 'sampah','diamond', 'common', 'uncommon', 'mythic', 'legendary']
     let er = `
 ┌「 *Pilihan* 」
 ${ar.map(v => '├ ' + v).join`\n`}
@@ -26,6 +26,24 @@ ${usedPrefix}${command} money 100 @${m.sender.split`@`[0]}*
         if(!m.mentionedJid || !args[2]) throw 'Tag salah satu, atau ketik Nomernya!!'
         let users = global.db.data.users
         switch (type) {
+            case 'exp':
+                if (global.db.data.users[m.sender].exp >= count * 1) {
+                    try {
+                        global.db.data.users[m.sender].exp -= count * 1
+                        global.db.data.users[who].exp += count * 1
+                        conn.reply(m.chat, `Berhasil mentransfer exp sebesar ${count}`.trim(), m)
+                    } catch (e) {
+                        global.db.data.users[m.sender].exp += count * 1
+                        m.reply('Gagal Menstransfer')
+                        console.log(e)
+                        if (owner) {
+                            for (let jid of global.owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid)) {
+                                conn.reply(jid, 'Transfer.js error\nNo: *' + m.sender.split`@`[0] + '*\nCommand: *' + m.text + '*\n\n*' + e + '*', m)
+                            }
+                        }
+                    }
+                } else conn.reply(m.chat, `Exp kamu tidak mencukupi untuk mentransfer Exp sebesar ${count}`.trim(), m)
+                break
             case 'limit':
                 if (global.db.data.users[m.sender].limit >= count * 1) {
                     try {

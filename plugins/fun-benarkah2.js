@@ -1,7 +1,7 @@
 let handler = async (m, { conn, text }) => {
   if (!text) throw false
   conn.reply(m.chat, `
-*Pertanyaan:* ${m.text}
+*Pertanyaan:* ${m.text.toLowerCase().replace(listkatakotor, '(*kata kotor*)')}
 *Jawaban:* ${pickRandom(['Iya', 'Sudah pasti', 'Sudah pasti benar', 'Tidak', 'Tentu tidak', 'Sudah pasti tidak'])}
 `.trim(), m, m.mentionedJid ? {
     contextInfo: {

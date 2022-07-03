@@ -19,8 +19,17 @@ Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}ao untuk bantuan
 Bonus: ${poin} XP
     `.trim()
+    const buttons = [
+        {buttonId: usedPrefix + 'ao', buttonText: {displayText: `Bantuan`}, type: 1}
+    ]
     conn.asahotak[id] = [
-    await conn.sendButtonLoc(m.chat, await (await fetch(fla + 'Asah Otak')).buffer(), caption, wm, 'Bantuan', usedPrefix + 'ao', m),
+        await conn.sendMessage(m.chat, { 
+            image: {url: fla + 'Asah Otak'},
+            caption: `${caption}`.trim(),
+            footer: wm,
+            buttons: buttons,
+            headerType: 4
+            }),
     json,
     poin,
     setTimeout(() => {

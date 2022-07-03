@@ -5,7 +5,9 @@ let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 moment.locale('id')
 let Waktu = moment(new Date)
-
+let WIB = Waktu.tz('Asia/Jakarta').format('HH:mm')
+let WITA = Waktu.tz('Asia/Makassar').format('HH:mm')
+let WIT = Waktu.tz('Asia/Jayapura').format('HH:mm')
 const defaultMenu = {
   before: `
 ┌─〔 %me 〕
@@ -13,16 +15,17 @@ const defaultMenu = {
 │
 ├ BOT AKTIF : *%uptime*
 ├ Total pengguna : %totalreg
-├ Waktu (WIB) : ${Waktu.tz('Asia/Jakarta').format('HH:mm')}
-├ Waktu (WITA) : ${Waktu.tz('Asia/Makassar').format('HH:mm')}
-├ Waktu (WIT) : ${Waktu.tz('Asia/Jayapura').format('HH:mm')}
+├ Waktu (WIB) : ${WIB}
+├ Waktu (WITA) : ${WITA}
+├ Waktu (WIT) : ${WIT}
+├ Github : %github
+├ *%npmname V.%version*
 └────
 %readmore`.trim(),
   header: '┌─〔 %category 〕',
   body: '├ %cmd %islimit %isPremium',
   footer: '└────\n',
   after: `
-*%npmname@^%version*
 ${'```%npmdesc```'}
 `,
 }
@@ -30,7 +33,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 
   let tags
   let teks = `${args[0]}`
-  let arrayMenu = ['all', 'Top-Fitur', 'update', 'menfess', 'Special-Tools', 'Islamic-Menu','AniManga', 'stiker', 'game', 'downloader', 'tools', 'fun', 'image', 'pasangan', 'Random-Fitur', 'anonymous','internet', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'xp', 'rpg', 'database', 'info', 'owner']
+  let arrayMenu = ['all', 'Top-Fitur', 'update', 'menfess', 'Special-Tools', 'Islamic-Menu','AniManga', 'stiker', 'game', 'downloader', 'tools', 'php', 'python', 'fun', 'image', 'pasangan', 'Random-Fitur', 'anonymous','internet', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'xp', 'rpg', 'database', 'info', 'owner']
   if (!arrayMenu.includes(teks)) teks = '404'
   if (teks == 'all') tags = {
     'main': 'UTAMA',
@@ -44,6 +47,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'game': 'Game',
     'downloader': 'Downloader',
     'tools': 'Tools',
+    'php': 'PHP Tools',
+    'python': 'Python Tools',
     'fun': 'Fun',
     'image': 'Images Maker or Search',
     'pasangan': 'Cari Pasangan',
@@ -118,6 +123,12 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   }
   if (teks == 'tools') tags = {
     'tools': 'Tools'
+  }
+  if (teks == 'php') tags = {
+    'php': 'PHP Tools'
+  }
+  if (teks == 'python') tags = {
+    'python': 'Python Tools'
   }
   if (teks == 'fun') tags = {
     'fun': 'Fun'
@@ -209,6 +220,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
           { title: 'Game', rowId: `${_p}? game` },
           { title: 'Downloader', rowId: `${_p}? downloader` },
           { title: 'Tools', rowId: `${_p}? tools` },
+          { title: 'PHP Tools', rowId: `${_p}? php` },
+          { title: 'Python Tools', rowId: `${_p}? python` },
           { title: 'Fun', rowId: `${_p}? fun`},
           { title: 'Images Maker or Search', rowId: `${_p}? image`},
           { title: 'Random Fitur', rowId: `${_p}? Random-Fitur` },

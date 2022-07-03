@@ -1,3 +1,6 @@
+/*
+Made by https://github.com/balhisyhrl
+*/
 const axios = require('axios')
 const cheerio = require('cheerio')
 
