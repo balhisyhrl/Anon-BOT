@@ -25,7 +25,7 @@ let handler = async (m, { usedPrefix, command}) => {
     }
 }
 handler.help = ['phpvuln <media>','scanfilephp <media>']
-handler.tags = ['php','sptools','update']
+handler.tags = ['php','python','sptools','update']
 handler.command = /^(phpvuln|scanfilephp)$/i
 
 module.exports = handler

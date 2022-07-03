@@ -6,8 +6,9 @@ let handler = async (m, { conn, args, command }) => {
         }
 handler.help = ['gc', 'group']
 handler.tags = ['group']
-handler.command = /^leavegroup|out|leavegc$/i
+handler.command = /^(leavegroup|out|leavegc)$/i
 
 handler.owner = true
+handler.group = true
 
 module.exports = handler
