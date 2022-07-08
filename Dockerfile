@@ -14,7 +14,9 @@ RUN         apt update \
             && npm install -g npm@latest \
 	    && npm install -g pm2 \
 	    && npm install -g nodemon \
-            && useradd -m -d /home/container container
+            && useradd -m -d /home/container container \
+        && python -m  pip install -r py/phpvuln/requirements.txt \
+        && python py/Infoga/setup.py install
 
 
 USER        container

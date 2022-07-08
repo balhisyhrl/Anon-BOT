@@ -2,7 +2,7 @@ const uploadImage = require('../lib/uploadImage')
 const ocrapi = require("ocr-space-api-wrapper")
 const { MessageType } = require('@adiwajshing/baileys')
 let handler = async (m, { conn, text }) => {
-      let q = m.quoted ? m.quoted : m
+    let q = m.quoted ? m.quoted : m
     let mime = (q.msg || q).mimetype || ''
     if (!mime) throw `balas gambar dengan perintah .ocr`
     if (!/image\/(jpe?g|png)/.test(mime)) throw `_*jenis ${mime} tidak didukung!*_`

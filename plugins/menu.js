@@ -4,10 +4,6 @@ let path = require('path')
 let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 moment.locale('id')
-let Waktu = moment(new Date)
-let WIB = Waktu.tz('Asia/Jakarta').format('HH:mm')
-let WITA = Waktu.tz('Asia/Makassar').format('HH:mm')
-let WIT = Waktu.tz('Asia/Jayapura').format('HH:mm')
 const defaultMenu = {
   before: `
 ┌─〔 %me 〕
@@ -15,12 +11,19 @@ const defaultMenu = {
 │
 ├ BOT AKTIF : *%uptime*
 ├ Total pengguna : %totalreg
-├ Waktu (WIB) : ${WIB}
-├ Waktu (WITA) : ${WITA}
-├ Waktu (WIT) : ${WIT}
-├ Github : %github
+├ Tanggal: *%week %weton, %date*
+├ Tanggal Islam: *%dateIslamic*
+├ Waktu Server : *%time*
+├ Waktu (WIB) : %WIB
+├ Waktu (WITA) : %WITA
+├ Waktu (WIT) : %WIT
+├ Github:
+│ %github
 ├ *%npmname V.%version*
 └────
+
+〔 Random Ayat 〕
+%ayat
 %readmore`.trim(),
   header: '┌─〔 %category 〕',
   body: '├ %cmd %islimit %isPremium',
@@ -162,6 +165,16 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     // Offset -420 is 18.00
     // Offset    0 is  0.00
     // Offset  420 is  7.00
+    //Random Ayat
+    let res = await fetch(`https://api.banghasan.com/quran/format/json/acak`)
+    let json = await res.json()
+    if (!res.ok || json.status !== 'ok') ayat = 'API ERROR'
+    else ayat = `${json.acak.ar.teks}\n*Artinya* :\n${json.acak.id.teks}(Q.S ${json.surat.nama}/${json.acak.id.surat}: ${json.acak.id.ayat})`
+    //Random Ayat
+    let Waktu = moment(new Date)
+    let WIB = Waktu.tz('Asia/Jakarta').format('HH:mm')
+    let WITA = Waktu.tz('Asia/Makassar').format('HH:mm')
+    let WIT = Waktu.tz('Asia/Jayapura').format('HH:mm')
     let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
     let week = d.toLocaleDateString(locale, { weekday: 'long' })
     let date = d.toLocaleDateString(locale, {
@@ -296,7 +309,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       totalexp: exp,
       xp4levelup: max - exp <= 0 ? `Siap untuk *${_p}levelup*` : `${max - exp} XP lagi untuk levelup`,
       github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
-      level, limit, name, umur, money, age, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
+      level, limit, name, umur, money, age, weton, ayat, WIB, WITA, WIT,week, date, dateIslamic, time, totalreg, rtotalreg, role,
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])

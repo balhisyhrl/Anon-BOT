@@ -40,38 +40,37 @@
 
 <p align="center">
   <a href="https://github.com/balhisyhrl/Anon-BOT/blob/main/README_EN.md">README English Version</a> •
-  <a href="https://github.com/balhisyhrl/Anon-BOT/#about">About</a> •
-  <a href="https://github.com/balhisyhrl/Anon-BOT/#instalasi">Installation</a> •
-  <a href="https://github.com/balhisyhrl/Anon-BOT/#thanks-to">Thanks to</a> •
-  <a href="https://github.com/balhisyhrl/Anon-BOT/#donasi">Donate</a></br>
-  <a href="https://github.com/balhisyhrl/Anon-BOT/#grup-anon-bot"> Official Group Bot</a> •
-  <a href="https://github.com/balhisyhrl/Anon-BOT/#cara-settings">Settings</a>
-
+  <a href="https://github.com/balhisyhrl/Anon-BOT/blob/main/README_EN.md#about">About</a> •
+  <a href="https://github.com/balhisyhrl/Anon-BOT/blob/main/README_EN.md#instalasi">Installation</a> •
+  <a href="https://github.com/balhisyhrl/Anon-BOT/blob/main/README_EN.md#thanks-to">Thanks to</a> •
+  <a href="https://github.com/balhisyhrl/Anon-BOT/blob/main/README_EN.md#donasi">Donate</a></br>
+  <a href="https://github.com/balhisyhrl/Anon-BOT/blob/main/README_EN.md#grup-anon-bot"> Official Group Bot</a> •
+  <a href="https://github.com/balhisyhrl/Anon-BOT/blob/main/README_EN.md#cara-settings">Settings</a>
 </p>
 
 ## About
-Anon-BOT adalah pengembangan sourcecode yang bersumber dari https://github.com/Fokusdotid/Family-MD
+Anon-BOT is a source code development sourced from https://github.com/Fokusdotid/Family-MD
 
-## Grup Anon-BOT
+## Anon-BOT Group
 [![Anon-BOT GROUP](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/DIN194DOTYoKckC3F4Y5Vu)
 
-# Donasi
+# Donate
 - Paypal : https://paypal.me/balhisyhrl
-- Dana   : 085156299020
-- Gopay  : 085156299020
+- Dana : 085156299020
+- Gopay : 085156299020
 - Perfect Money : U39360574
 
-# Instalasi
-## UNTUK PENGGUNA WINDOWS/VPS/RDP
+# Installation
+## FOR WINDOWS/VPS/RDP USERS
 
-* Unduh & Install Git [`Klik Disini`](https://git-scm.com/downloads)
-* Unduh & Install NodeJS [`Klik Disini`](https://nodejs.org/en/download)
-* Unduh & Install FFmpeg [`Klik Disini`](https://ffmpeg.org/download.html) (**Jangan Lupa Tambahkan FFmpeg ke variabel lingkungan PATH**)
-* Unduh & Install ImageMagick [`Klik Disini`](https://imagemagick.org/script/download.php)
+* Download & Install Git [`Click Here`](https://git-scm.com/downloads)
+* Download & Install NodeJS [`Click Here`](https://nodejs.org/en/download)
+* Download & Install FFmpeg [`Click Here`](https://ffmpeg.org/download.html) (**Don't Forget to Add FFmpeg to PATH environment variable**)
+* Download & Install ImageMagick [`Click Here`](https://imagemagick.org/script/download.php)
 
-### Tambahan untuk beberapa Fitur Khusus
-* Unduh & Install PHP [`Klik Disini`](https://www.php.net/downloads)
-* Unduh & Install Python [`Klik Disini`](https://www.python.org/downloads/)
+### Addition to some Special Features
+* Download & Install PHP [`Click Here`](https://www.php.net/downloads)
+* Download & Install Python [`Click Here`](https://www.python.org/downloads/)
 
 ```bash
 python -m  pip install -r py/phpvuln/requirements.txt
@@ -80,9 +79,9 @@ python py/Infoga/setup.py install
 
 ---------
 
-## UNTUK PENGGUNA TERMUX
+## FOR TERMUX USERS
 
-* Download Termux [`Klik Disini`](https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk)
+* Download Termux [`Click Here`](https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk)
 
 ```
 $ pkg update && upgrade -y
@@ -95,51 +94,51 @@ $ pkg install php
 $ git clone https://github.com/balhisyhrl/Anon-BOT.git
 $ cd Anon-BOT
 $ npm i
-$ node .
+$nodes .
 ```
 ---------
-## UNTUK PENGGUNA HEROKU
+## FOR HEROKU USERS
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/balhisyhrl/Anon-BOT)
 ---------
-## CARA SETTINGS
+## HOW TO SETTINGS
 
-Untuk menambahkan atau mengedit owner ada di `settings/owner.json`
-Untuk mengubah atau mengedit nama bot ada di `data.json` sekalian ubah cookies pinterest & Instagramnya ya
+To add or edit owner go to `settings/owner.json`
+To change or edit the bot name, go to `data.json` and change the pinterest & Instagram cookies, okay?
 
-## Arguments `node . [--options] [<session name>]` 
+## Arguments `node . [--options] [<session name>]`
 
-### `--session <nama file>`
+### `--session <filename>`
 
-menggunakan session dari nama file yang berbeda, default `session.data.json`
+using session from a different filename, default `session.data.json`
 
-contoh nama file `anon.json` maka penggunaannya `node . --session 'anon'`
+example file name `anon.json` then use `node . --session 'anon'`
 
 ### `--prefix <prefix>`
 
-* `prefixes` dipisahkan oleh masing-masing karakter
-Setel awalan
+* `prefixes` separated by individual characters
+Set prefix
 
 ### `--server`
 
-Digunakan untuk [heroku](https://heroku.com/) atau pindai melalui situs web
+Used for [heroku](https://heroku.com/) or scan through website
 
-### `--db <url mongodb kamu>`
+### `--db <your mongodb url>`
 
-Buka file package.json dan isikan url mongodb kamu di bagian `mongo: --db url mongodb`!
+Open the package.json file and enter your mongodb url in the `mongo: --db mongodb url` section!
 
 ### `--db <json-server-url>`
 
-menggunakan db eksternal alih-alih db lokal, **disarankan** menggunakan mongodb
+use external db instead of local db, **recommended** use mongodb
 
-contoh server dengan mongodb `mongodb+srv://<username>:<password>@name-of-your-db.thhce.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+example server with mongodb `mongodb+srv://<username>:<password>@name-of-your-db.thhce.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
-contoh server dengan repl `https://json-server.nurutomo.repl.co/`
+example server with repl `https://json-server.nurutomo.repl.co/`
 
-kode: `https://repl.it/@Nurutomo/json-server`
+code: `https://repl.it/@Nurutomo/json-server`
 
-`node . --db 'https://json-server.nurutomo.repl.co/'`
+`nodes . --db 'https://json-server.nurutomo.repl.co/'`
 
-server harus memiliki spesifikasi seperti ini
+the server must have specifications like this
 
 #### GET
 
@@ -161,11 +160,11 @@ Content-Type: application/json
 
 ### `--big-qr`
 
-Jika qr unicode kecil tidak mendukung
+If small unicode qr doesn't support
 
 ### `--img`
 
-Aktifkan pemeriksa gambar melalui terminal
+Enable image checker via terminal
 
 ### `--test`
 
@@ -183,16 +182,16 @@ conn.logger.level = 'trace'
 conn.logger.level = 'debug'
 ```
 
-## Thanks To 
+## Thanks To
 **Allah SWT**,
 
-**Orang Tua**,
+**Parent**,
 
-**Seluruh penyedia module**,
+**All module providers**,
 
-**Seluruh pengguna BOT**,
+**All BOT users**,
 
-**Fokusdotid yang memperbolehkan recode dan republish sourcecode ini**
+**The Fokus ID that allows recode and republish this source code**
 
 
 #### Special Thanks to
@@ -201,5 +200,5 @@ conn.logger.level = 'debug'
 [![Fokus ID](https://github.com/fokusdotid.png?size=100)](https://github.com/fokusdotid)
 [![Aiinne](https://github.com/Aiinne.png?size=100)](https://github.com/Aiinne)
 
-### Penulis Ulang
+### Recoder
 [![Bal](https://github.com/balhisyhrl.png?size=100)](https://github.com/balhisyhrl/)
