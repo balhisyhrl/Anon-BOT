@@ -12,7 +12,7 @@ let hasil = `${puisi.data}
   m.reply(hasil)
 }
 handler.help = ['puisi']
-handler.tags = ['quotes','update']
+handler.tags = ['quotes']
 handler.command = /^puisi$/i
 
 module.exports = handler

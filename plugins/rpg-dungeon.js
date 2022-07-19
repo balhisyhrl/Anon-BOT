@@ -666,6 +666,7 @@ handler.help = ['dungeon'].map(v => v + ' [nama room]')
 handler.tags = ['rpg']
 handler.command = /^(du?n?g?e?o?n?)$/i
 
+handler.register = true
 handler.mods = false
 
 module.exports = handler

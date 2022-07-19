@@ -1,8 +1,10 @@
+const fs = require('fs')
 let handler = async (m, { conn }) => {
   let lang = db.data.users[m.sender].lang
-  let tot = Object.values(global.plugins).filter(p => !p.disabled).map(p => Array.isArray(p.command) ? p.command : [p.command]).length
+  /*let tot = Object.values(global.plugins).filter(p => !p.disabled).map(p => Array.isArray(p.command) ? p.command : [p.command]).length */
+  let tot = fs.readdirSync('./plugins').length
   let total = await conn.translate(lang, 'Total fitur ' + tot).catch((_) => 'Total fitur ' + tot)
-  m.reply(total)
+  m.reply(total) 
 }
 handler.help = ['totalfitur']
 handler.tags = ['main']

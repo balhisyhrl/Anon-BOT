@@ -20,6 +20,7 @@ handler.help = ['weekly']
 handler.tags = ['rpg']
 handler.command = /^(weekly|mingguan)$/i
 handler.level = 5
+handler.register = true
 handler.fail = null
 
 module.exports = handler

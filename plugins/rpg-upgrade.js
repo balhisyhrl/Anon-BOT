@@ -133,6 +133,7 @@ handler.help = ['upgrade']
 handler.tags = ['rpg']
 handler.command = /^(up(grade)?)$/i
 
+handler.register = true
 handler.fail = null
 
 module.exports = handler

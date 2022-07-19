@@ -106,6 +106,8 @@ handler.help = ['feed [pet type]']
 handler.tags = ['rpg']
 handler.command = /^(feed(ing)?)$/i
 
+handler.register = true
+
 module.exports = handler
 
 function clockString(ms) {

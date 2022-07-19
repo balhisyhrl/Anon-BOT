@@ -21,7 +21,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 }
 handler.help = ['rot <text>']
-handler.tags = ['tools','php','update']
+handler.tags = ['tools','php']
 handler.command = /^(rot)$/i
 
 module.exports = handler

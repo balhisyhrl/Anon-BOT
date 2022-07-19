@@ -34,8 +34,8 @@ ${usedPrefix}${command} tupai
         m.reply('Tunggu kk')
         let media = await conn.downloadAndSaveMediaMessage(quoted)
         let ran = getRandom()+'.mp3'
-        exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
-        fs.unlinkSync(media)
+        exec(`ffmpeg -i ${`./tmp/`+media} ${set} ${ran}`, (err, stderr, stdout) => {
+        fs.unlinkSync(`./tmp/`+media)
         if (err) return m.reply(er)
         let buff = fs.readFileSync(ran)
         conn.sendMessage(m.chat, { audio: buff, mimetype: 'audio/mpeg' }, { quoted : m })

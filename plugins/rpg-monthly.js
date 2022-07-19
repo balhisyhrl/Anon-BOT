@@ -17,6 +17,7 @@ handler.help = ['monthly']
 handler.tags = ['rpg']
 handler.command = /^(monthly|bulanan)$/i
 handler.level = 5
+handler.register = true
 handler.fail = null
 
 module.exports = handler

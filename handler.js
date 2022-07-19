@@ -673,6 +673,9 @@ module.exports = {
 Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
 Untuk mematikan fitur ini, ketik
 *.enable delete*
+
+Untuk menghapus pesan yang dikirim BOT, reply pesan dengan perintah
+*.delete*
 `.trim(), wm, 'Matikan Fitur ini', '.enable delete', msg, {
             mentions: [participant]
         })

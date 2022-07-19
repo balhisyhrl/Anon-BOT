@@ -50,4 +50,6 @@ handler.help = ['carinime2 <judul>']
 handler.tags = ['animanga']
 handler.command = /^(carinime2)$/i
 
+handler.register = true
+
 module.exports = handler

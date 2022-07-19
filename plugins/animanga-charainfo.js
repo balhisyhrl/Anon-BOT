@@ -16,4 +16,6 @@ handler.help = ['chara <nama chara>']
 handler.tags = ['animanga']
 handler.command = /^(chara|character)$/i
 
+handler.register = true
+
 module.exports = handler

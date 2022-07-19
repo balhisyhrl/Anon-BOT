@@ -6,7 +6,8 @@ let handler = async (m, { conn, usedPrefix, isPrems }) => {
   let time = user.lastclaim + 86400000
   if (new Date - user.lastclaim < 86400000) return await conn.send2Button(m.chat, `Kamu sudah mengklaim klaim harian hari ini\ntunggu selama *🕒${msToTime(time - new Date())}* lagi`, wm, 'menu', usedPrefix + 'menu', 'claim2', usedPrefix + 'claim2', m)
   user.exp += isPrems ? prem * user.level : free * user.level
-  conn.send2Button(m.chat, `+${isPrems ? prem * user.level : free * user.level} XP\n\nsemakin tinggi level, semakin tinggi juga XP yang didapat`, wm, 'menu', usedPrefix + 'menu', 'claim2', usedPrefix + 'claim2', m)
+  user.money += isPrems ? prem * user.level : free * user.level
+  conn.send2Button(m.chat, `+${isPrems ? prem * user.level : free * user.level} XP\n+${isPrems ? prem * user.level : free * user.level} Money\n\nsemakin tinggi level, semakin tinggi juga XP yang didapat`, wm, 'menu', usedPrefix + 'menu', 'claim2', usedPrefix + 'claim2', m)
   user.lastclaim = new Date * 1
 }
 handler.help = ['daily', 'claim']

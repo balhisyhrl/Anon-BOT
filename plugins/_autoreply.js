@@ -1,6 +1,7 @@
 let fs = require('fs')
 let moment = require('moment-timezone')
-
+let { webp2png } = require('../lib/webp2mp4')
+const detection = require('../lib/detect')
 let handler = m => m
 
 handler.all = async function (m) {
@@ -29,25 +30,17 @@ handler.all = async function (m) {
 
 Allah tidak menyukai perkataan buruk, (yang diucapkan) secara terus terang kecuali oleh orang yang dizalimi. Dan Allah Maha Mendengar, Maha Mengetahui. [Q.S An-Nisa': 148]`
             this.sendButton(m.chat, gabolekasar.trim(), wm, 'Menu', '.menu', m)
-         let who
+        let who
         if (!m.isGroup) who = m.sender
         else {
             who = m.sender
         }
-        //let bg = 'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=birdy-logo&doScale=true&scaleWidth=800&scaleHeight=500&text=IKLAN'
-        let text = `Owner ANON-BOT Open jasa pembuatan program PHP, JS, Python, NodeJS dan juga jasa pembuatan web sesuai keinginan (Framework/Native/CMS). Joki tugas Informatika ataupun Sistem Informasi juga bisa loh. 
-
-Minat? 
-Contact wa.me/6285156299020
-
-Follow Instagram juga lah https://instagram.com/balhisyhrl
+        let text = `${iklanOwner}
 
 IKLAN KARENA @${await m.sender.replace(/@.+/, '')} BERKATA KASAR`.trim()
         let saha = [who]
         let mentionedJid = saha.concat(m.mentionedJid)
-        //await conn.sendFile(m.chat, await (await fetch(bg)).buffer(), '', text , m, { contextInfo: { mentionedJid } })
         await conn.reply(m.chat, text , m, { contextInfo: { mentionedJid } })
-        //conn.sendMessage(m.chat, { text: text, mentions: [m.sender] }, { quoted: conn.p[id][0] })
         
     }
 
@@ -60,7 +53,7 @@ IKLAN KARENA @${await m.sender.replace(/@.+/, '')} BERKATA KASAR`.trim()
         this.sendButton(m.chat, `gabole sange ke BOT kk`.trim(), wm, 'Menu', '.menu', m)
     }
 
-    //Reply Horny
+    //Reply LGBT
     let antilgbt = /(gay|lesbi|lesbian|homo|homosexual|lgbt)/i
     let islgbt = antilgbt.exec(m.text)
     if (islgbt && !m.fromMe) {
@@ -78,12 +71,30 @@ IKLAN KARENA @${await m.sender.replace(/@.+/, '')} BERKATA KASAR`.trim()
 `.trim(), wm, 'Pemilik Bot', '.owner', m)
     }
 
+    //Reply Stcicker
+    /*let quoted = m.quoted ? m.quoted : m
+    let mime = (quoted.msg || quoted).mimetype || ''
+    let isStciker = /webp/.test(mime)
+    if (isStciker && !m.fromMe) {
+        let media = await quoted.download()
+        let ScanSticker = await webp2png(media)
+        if(!ScanSticker) return 0
+        let { status, nude, nudescore, weapon, weaponscore, alcohol, alcoholscore, drugs, drugsscore, gore, gorescore } = await detection(ScanSticker)
+        if(status == false) return 0
+        if(nude == true) m.reply(`Terdeteksi Sticker mengandung unsur ketelanjangan\nScore : ${nudescore}\n\nJika ini sebuah kesalahan scanning, Abaikan saja~`)
+        if(weapon == true) m.reply(`Sticker mengandung unsur senjata\nScore : ${weaponscore}\n\nJika ini sebuah kesalahan scanning, Abaikan saja~`)
+        if(alcohol == true) m.reply(`Sticker mengandung unsur minuman keras\nScore : ${alcoholscore}\n\nJika ini sebuah kesalahan scanning, Abaikan saja~`)
+        if(drugs == true) m.reply(`Sticker mengandung unsur obat obatan\nScore : ${drugsscore}\n\nJika ini sebuah kesalahan scanning, Abaikan saja~`)
+        if(gore == true) m.reply(`Sticker mengandung unsur gore\nScore : ${gorescore}\n\nJika ini sebuah kesalahan scanning, Abaikan saja~`)
+    }*/
+
     if (m.isGroup) {
-    if (m.fromMe) return
+    if (m.fromMe) return 0
     if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
-    	await this.send2Button(m.chat, m.msg.contextInfo.expiration == 604800 ? '\n\nketik *.ephe* untuk matiin pesan sementaranya, biar tombolnya bisa dipake' : 'uhm.. iya ada apa?', wm, `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`, m)
+        let teks = pickRandom([`Hii @${m.sender.split`@`[0]}_\n\n_Saya disini`, `Yo @${m.sender.split`@`[0]}\n\n_Ada apa??`, `Ekhheemmm, Uhuk Ughhuk`, `Puuuiyy`, `Poom`, `Hadirrr`, `Yooossshhhh`,`Ya ada apa?`, `Apaan`, `Ea`, `Laper nih, beliin makan dong`, `Apalu`])
+    	await this.send2Button(m.chat, m.msg.contextInfo.expiration == 604800 ? '\n\nketik *.ephe* untuk matiin pesan sementaranya, biar tombolnya bisa dipake' : teks, wm, `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`, m)
     }
-}
+    }
     
     if (/^bot$/i.test(m.text)) {
         await this.sendButton(m.chat, !(m.isGroup || m.isPrems) && group ? 'hanya grup' : isBanned ? 'chat banned' : banned ? 'user banned' : 'aktif', wm, !(m.isGroup || m.isPrems) && group ? 'donasi' : isBanned ? 'unban' : banned ? 'minta owner kalo mau di unban' : 'donasi', !(m.isGroup || m.isPrems) && group ? '.donasi' : isBanned ? '.unban' : banned ? '.owner' : '.donasi', m)

@@ -1,3 +1,4 @@
+const fs = require('fs')
 let handler = async (m, { conn }) => {
     let { anon, anticall, backup, jadibot, groupOnly, epe, tag, self } = global.db.data.settings[conn.user.jid]
 
@@ -7,11 +8,13 @@ let handler = async (m, { conn }) => {
     
     let _uptime = process.uptime() * 1000
     let uptime = clockString(_uptime)
-
+    let length = fs.readdirSync('./plugins').length
 
     m.reply(`
 ┌─〔 Status 〕
 ├ Aktif selama ${uptime}
+├ Owner wa.me/${owner}
+├ ${length} Total Fitur 
 ├ *${groups.length}* Grup
 ├ *${chats.length - groups.length}* Chat Pribadi
 ├ *${Object.keys(global.db.data.users).length}* Pengguna

@@ -123,6 +123,7 @@ handler.help = ['craft']
 handler.tags = ['rpg']
 handler.command = /^(craft(ing)?)$/i
 
+handler.register = true
 handler.fail = null
 
 module.exports = handler

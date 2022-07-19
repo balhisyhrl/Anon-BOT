@@ -52,4 +52,6 @@ handler.help = ['randomnime']
 handler.tags = ['animanga']
 handler.command = /^(randomnime)$/i
 
+handler.register = true
+
 module.exports = handler

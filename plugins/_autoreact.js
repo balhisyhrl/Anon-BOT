@@ -5,9 +5,9 @@ let handler = async (m, { conn }) => {
     		text: emot,
     		key: m.key
     	}
-    })	
+    })
 }
-handler.customPrefix = /(bile?k|ban?h|cum?|knt?l|y?|mmk|p|b(a|i)?c?(o|i)?(t|d)?|wibu|p(a)?nt(e)?k|pepe?k)/i
+handler.customPrefix = /(bile?k|ban?h|cum?|knt?l|6?|mmk|p|b(a|i)?c?(o|i)?(t|d)?|wibu|p(a)?nt(e)?k|pepe?k)/i
 handler.command = new RegExp
 
 module.exports = handler

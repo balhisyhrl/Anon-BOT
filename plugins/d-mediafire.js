@@ -9,6 +9,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 *Size:* ${filesizeH}
 *Extension:* ${ext}
 *Uploaded:* ${aploud}
+*Link:* ${url}
 _Download on process..._
 `.trim()
     m.reply(caption)

@@ -20,7 +20,7 @@ let handler = async (m, { usedPrefix, command, conn, args }) => {
 `.trim(), m)
 }
 handler.help = ['twitter'].map(v => v + ' <url>')
-handler.tags = ['downloader','update']
+handler.tags = ['downloader']
 
 handler.command = /^twitter$/i
 

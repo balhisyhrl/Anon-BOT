@@ -451,6 +451,6 @@ handler.help = ['shop <jual|beli> <args>', 'toko <jual|beli> <args>']
 handler.tags = ['rpg']
     
 handler.command = /^(shop|toko|beli|sell|jual)$/i
-handler.register = false
+handler.register = true
 
 module.exports = handler

@@ -21,7 +21,7 @@ ${text}
 }
 
 handler.help = ['peta <wilayah>']
-handler.tags = ['internet','sptools','update']
+handler.tags = ['internet','sptools']
 handler.command = /^(peta|map)$/i
 
 module.exports = handler

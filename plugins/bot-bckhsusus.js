@@ -4,7 +4,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let getGroups = await conn.groupFetchAllParticipating()
     let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
     let listgc = groups.map(v => v.id)
-    m.reply(`Mengirim Broadcast Ke ${listgc.length} Group Chat, Waktu Selesai ${listgc.length * 1.5} detik`)
+    m.reply(`Mengirim Broadcast Ke ${listgc.length} Group Chat, Waktu Selesai ${listgc.length * 12} detik`)
     let [bc, menu, display] = text.split`%`
     if (!bc || !menu || !display) throw `Gunakan perintah dengan benar\n\ncontoh:\n${usedPrefix + command} pesan|!menu|menu`
     let quoted = m.quoted ? m.quoted : m
@@ -17,14 +17,24 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             {buttonId: menu, buttonText: {displayText: display}, type: 1}
           ]
         let bg = link
-        await conn.delay(1500)
-        await conn.sendMessage(id, { 
+        await conn.delay(1200)
+        if(/image/.test(mime)){
+        await conn.sendMessage(id, {
             image: {url: bg},
             caption: `${bc}`.trim(),
             footer: `BROADCAST ` + wm,
             buttons: buttons,
             headerType: 4
             })
+        } else if(/video/.test(mime)){
+            await conn.sendMessage(id, {
+                video: {url: bg},
+                caption: `${bc}`.trim(),
+                footer: `BROADCAST ` + wm,
+                buttons: buttons,
+                headerType: 4
+                })
+            }
     }
     m.reply(`Sukses Mengirim Broadcast Ke ${listgc.length} Group`)  
 }

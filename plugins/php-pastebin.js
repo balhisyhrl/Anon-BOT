@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 }
 handler.help = ['pastebin <text>']
-handler.tags = ['tools','php','update']
+handler.tags = ['tools','php']
 handler.command = /^(pastebin)$/i
 
 module.exports = handler

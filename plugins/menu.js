@@ -36,7 +36,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 
   let tags
   let teks = `${args[0]}`
-  let arrayMenu = ['all', 'Top-Fitur', 'update', 'menfess', 'Special-Tools', 'Islamic-Menu','AniManga', 'stiker', 'game', 'downloader', 'tools', 'php', 'python', 'fun', 'image', 'pasangan', 'Random-Fitur', 'anonymous','internet', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'xp', 'rpg', 'database', 'info', 'owner']
+  let arrayMenu = ['all', 'Top-Fitur', 'update', 'menfess', 'Special-Tools', 'Islamic-Menu','AniManga', 'stiker', 'game', 'downloader', 'tools', 'php', 'python', 'convert','fun', 'image', 'pasangan', 'Random-Fitur', 'anonymous','internet', 'news','kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'xp', 'rpg', 'database', 'info', 'owner']
   if (!arrayMenu.includes(teks)) teks = '404'
   if (teks == 'all') tags = {
     'main': 'UTAMA',
@@ -52,6 +52,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'tools': 'Tools',
     'php': 'PHP Tools',
     'python': 'Python Tools',
+    'convert': 'Converter',
     'fun': 'Fun',
     'image': 'Images Maker or Search',
     'pasangan': 'Cari Pasangan',
@@ -87,6 +88,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   }
   if (teks == 'AniManga') tags = {
     'animanga': 'Anime & Manga'
+  }
+  if (teks == 'convert') tags = {
+    'convert': 'Converter'
   }
   if (teks == 'xp') tags = {
     'xp': 'Exp & Limit'
@@ -135,6 +139,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   }
   if (teks == 'fun') tags = {
     'fun': 'Fun'
+  }
+  if (teks == 'news') tags = {
+    'news': 'Berita'
   }
   if (teks == 'rpg') tags = {
     'rpg': 'GAME RPG'
@@ -235,12 +242,14 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
           { title: 'Tools', rowId: `${_p}? tools` },
           { title: 'PHP Tools', rowId: `${_p}? php` },
           { title: 'Python Tools', rowId: `${_p}? python` },
+          { title: 'Converter', rowId: `${_p}? convert` },
           { title: 'Fun', rowId: `${_p}? fun`},
           { title: 'Images Maker or Search', rowId: `${_p}? image`},
           { title: 'Random Fitur', rowId: `${_p}? Random-Fitur` },
           { title: 'Cari Pasangan', rowId: `${_p}? pasangan` },
           { title: 'Anonymous', rowId: `${_p}? anonymous` },
           { title: 'Internet', rowId: `${_p}? internet` },
+          { title: 'Berita', rowId: `${_p}? news` },
           { title: 'Kerang Ajaib', rowId: `${_p}? kerangajaib` },
           { title: 'Quotes', rowId: `${_p}? quotes` },
           { title: 'Grup', rowId: `${_p}? grup` },
@@ -322,16 +331,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 handler.help = ['menu', 'help', '?']
 handler.tags = ['main']
 handler.command = /^(m(enu)?|help|\?)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
 
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
 handler.exp = 3
 
 module.exports = handler

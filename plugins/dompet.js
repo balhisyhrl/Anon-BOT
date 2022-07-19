@@ -13,13 +13,13 @@ let handler = async (m, { conn, usedPrefix }) => {
   } catch (e) {
 
   } finally {
-    let { name, premium, premiumTime, atm, limit, warning, pasangan, money, exp, lastclaim, registered, regTime, age, level, role } = global.db.data.users[who]
+    let { name, premium, premiumTime, atm, limit, warning, pasangan, money, exp, lastclaim, tiketcoin, registered, regTime, age, level, role } = global.db.data.users[who]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let username = conn.getName(who)
     let jodoh = `Berhubungan dengan @${pasangan.split('@')[0]}`
     let str = `
 ╭───ꕥ *PROFILE* ꕥ───✾
-│•> Name: ${username}
+│•> Name: ${username} | ${name}
 │•> Status: ${pasangan ? jodoh : 'Jomblo' }
 │•> Premium: ${premium ? `${conn.msToDate(premiumTime - new Date() * 1)}` : 'Gratisan'}
 │•> Number: ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
@@ -30,13 +30,16 @@ let handler = async (m, { conn, usedPrefix }) => {
 │•> Limit: *${limit}*
 │•> Registered: ${registered ? 'Yes (' +  moment(new Date(regTime)).format('dddd, Do MMMM YYYY, hh:mm')+ ')': 'No'}
 │•> Atm: *${atm}*
+│•> Tiketcoin: *${tiketcoin}*
 │•> Money: *${money}*
 │•> Exp  : *${exp}*
 │•> Warning : *${warning}*
 ╰─────────────────────
 `.trim()
     let mentionedJid = [who]
-    conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { contextInfo: { mentionedJid }})
+    conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { contextInfo: {
+      mentionedJid: [global.db.data.users[who].pasangan]
+    }})
     //conn.sendTemplateButtonFakeImg(m.chat, await (await fetch(pp)).buffer(), str, wm, 'Menu', `${prefix}menu`, { mentions: [m.sender] })
     //conn.send2ButtonLoc(m.chat, await (await fetch(pp)).buffer(), str, wm, `Menu`, `${prefix}menu`, 'Claim', `${prefix}claim`)
   }

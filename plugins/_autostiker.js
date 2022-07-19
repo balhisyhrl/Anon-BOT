@@ -1,12 +1,17 @@
 const { sticker } = require('../lib/sticker')
 const WSF = require('wa-sticker-formatter')
+const uploadImage = require('../lib/uploadImage')
+const ocrapi = require("ocr-space-api-wrapper")
+const detection = require('../lib/detect')
+const { MessageType } = require('@adiwajshing/baileys')
+const fs = require('fs')
 let handler = m => m
 
 handler.before = async function (m) {
     let chat = global.db.data.chats[m.chat]
     let user = global.db.data.users[m.sender]
     if (chat.stiker && !user.banned && !chat.isBanned && !m.fromMe && !m.isBaileys) {
-        // try {
+        /*// try {
         let q = m
         let stiker = false
         let wsf = false
@@ -48,9 +53,26 @@ handler.before = async function (m) {
                 ephemeralExpiration: 86400
             })
         // } finally {
-        //     if (stiker) {
+        //     if (stiker) { 
         //     }
-        // }
+        // } */
+        let quoted = m
+        let mime = (quoted.msg || quoted).mimetype || ''
+        if (/image/.test(mime)) {
+            let media = await quoted.download()
+            let url = await uploadImage(media)
+            let hasil = await ocrapi.ocrSpace(url)
+            let getText = hasil.ParsedResults[0].ParsedText
+            let isBadword = listkatakotor.exec(getText.toLowerCase())
+            if(isBadword) throw `Stiker mengandung kata kata kotor tidak di ijinkan`
+            let encmedia = await conn.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+            await fs.unlinkSync(encmedia)
+        } else if (/video/.test(mime)) {
+            if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
+            let media = await quoted.download()
+            let encmedia = await conn.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+            await fs.unlinkSync(encmedia)
+        }
     }
     return true
 }

@@ -144,7 +144,7 @@ Banned: *No*
 handler.help = ['inventory', 'inv']
 handler.tags = ['rpg']
 handler.command = /^(inv(entory)?|bal|level(ing)?|money|e?xp)$/i
-handler.register = false
+handler.register = true
 module.exports = handler
 
 const more = String.fromCharCode(8206)

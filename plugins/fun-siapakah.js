@@ -5,6 +5,9 @@ let handler = async (m, { conn, participants, command, text }) => {
         let member = participants.map(u => u.id)
         who = member[Math.floor(Math.random() * member.length)]
     }
+    let anti = /(jodoh)/i
+    let is = anti.exec(text.toLowerCase())
+    if (is && !m.fromMe) throw `Nanya jodoh kok ke BOT :v`
     let jawab = `
 *Pertanyaan:* ${command} ${text}?
 *Jawaban:* @${who.replace(/@.+/, '')}
@@ -13,9 +16,8 @@ let handler = async (m, { conn, participants, command, text }) => {
     let mentionedJid = saha.concat(m.mentionedJid)
     conn.reply(m.chat, jawab, m, { contextInfo: { mentionedJid } })
 }
-handler.help = ['', 'kah'].map(v => 'siapa' + v + ' <teks>?')
+handler.help = ['', 'kah'].map(v => 'siapa' + v + ' <teks>')
 handler.tags = ['kerang']
-handler.customPrefix = /(\?$)/
 handler.command = /^siapa(kah)?$/i
 
 module.exports = handler

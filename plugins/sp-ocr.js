@@ -13,7 +13,7 @@ let handler = async (m, { conn, text }) => {
 }
 
 handler.help = ['ocr', 'totext']
-handler.tags = ['sptools','update']
+handler.tags = ['sptools']
 handler.command = /^(ocr|totext)$/i
 
 module.exports = handler

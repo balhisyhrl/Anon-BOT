@@ -3,23 +3,25 @@ const cheerio = require('cheerio')
 
 let handler = async(m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `Contoh :\n${usedPrefix + command} anime`
-  const json = await pinterest(text)
+  try{
+    const json = await pinterest(text)
   //let regex = /https:\/\/i.pinimg.com\/(*?)\/(*?)\/(*?)\/(*?)/g
   let img = json[Math.floor(Math.random() * json.length)]
   api = await conn.getBuffer(img)
   if(!api) throw conn.sendButton(m.chat, 'Pelan - Pelan Aja kk', wm, `Cari ${text} Lagi?`, usedPrefix + `pinterest ${text}`, m)
-const buttons = [
-  {buttonId: usedPrefix + `pinterest ${text}`, buttonText: {displayText: `Cari ${text} Lagi?`}, type: 1}
-]
- let gass = await conn.sendMessage(m.chat, { 
-  image: {url: img},
-  caption: `*Hasil pencarian :* ${text}\n*Link Asli :* ${img}
-  `.trim(),
-  footer: wm,
-  buttons: buttons,
-  headerType: 4
+  const buttons = [
+    {buttonId: usedPrefix + `pinterest ${text}`, buttonText: {displayText: `Cari ${text} Lagi?`}, type: 1}
+  ]
+  await conn.sendMessage(m.chat, { 
+    image: {url: img},
+    caption: `*Hasil pencarian :* ${text}\n*Link Asli :* ${img}`.trim(),
+    footer: wm,
+    buttons: buttons,
+    headerType: 4
   })
-  if (!gass) throw `ERROR`
+  } catch(e){
+    await conn.sendButton(m.chat, 'Pelan - Pelan Aja kk\nERROR: Gagal mengambil gambar', wm, `Cari ${text} Lagi?`, usedPrefix + `pinterest ${text}`, m)
+  }
 }
 handler.help = ['pinterest <keyword>']
 handler.tags = ['image','top']

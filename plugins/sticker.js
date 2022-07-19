@@ -65,6 +65,10 @@ module.exports = handler
 const isUrl = (text) => {
   return text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
 } */
+const uploadImage = require('../lib/uploadImage')
+const ocrapi = require("ocr-space-api-wrapper")
+const detection = require('../lib/detect')
+const { MessageType } = require('@adiwajshing/baileys')
 const fs = require('fs')
 const { sticker } = require('../lib/sticker')
 let handler = async (m, { conn, args, usedPrefix, command }) => {
@@ -74,6 +78,17 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   m.reply('Tunggu kk')
   if (/image/.test(mime)) {
       let media = await quoted.download()
+      let url = await uploadImage(media)
+      let gettext = await getText(url)
+      let isBadword = listkatakotor.exec(gettext.toLowerCase())
+      if(isBadword) throw `Stiker mengandung kata kata kotor tidak di ijinkan`
+      let { status, nude, nudescore, weapon, weaponscore, alcohol, alcoholscore, drugs, drugsscore, gore, gorescore } = await detection(url)
+      //if(status == false) return 0
+      if(nude == true) throw `Gambar mengandung unsur ketelanjangan tidak di ijinkan\nScore : ${nudescore}`
+      if(weapon == true) throw `Gambar mengandung unsur senjata tidak di ijinkan\nScore : ${weaponscore}`
+      if(alcohol == true) throw `Gambar mengandung unsur minuman keras tidak di ijinkan\nScore : ${alcoholscore}`
+      if(drugs == true) throw `Gambar mengandung unsur obat obatan tidak di ijinkan\nScore : ${drugsscore}`
+      if(gore == true) throw `Gambar mengandung unsur gore tidak di ijinkan\nScore : ${gorescore}`
       let encmedia = await conn.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
       await fs.unlinkSync(encmedia)
   } else if (/video/.test(mime)) {
@@ -98,3 +113,13 @@ module.exports = handler
 const isUrl = (text) => {
   return text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
 }
+
+async function getText(url){
+  try{
+    let hasil = await ocrapi.ocrSpace(url)
+    let getText = hasil.ParsedResults[0].ParsedText
+    return getText
+  } catch(e) {
+    return 'a'
+  }
+} 

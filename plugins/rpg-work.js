@@ -83,7 +83,7 @@ handler.tags = ['rpg']
 handler.command = /^(petualang|mulung|work|w)$/i
 
 handler.fail = null
-handler.register = false
+handler.register = true
 
 module.exports = handler
 

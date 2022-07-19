@@ -14,9 +14,9 @@ handler.before = async function (m) {
             buffer = Buffer.concat([buffer, chunk])
         }
         if (/video/.test(type)) {
-            return this.sendFile(m.chat, buffer, 'media.mp4', msg[type].caption || '', m)
+            return this.sendFile(m.chat, buffer, 'media.mp4', msg[type].caption + "\n\nKirim Perintah .delete untuk menghapus pesan ini" || 'Kirim Perintah .delete untuk menghapus pesan ini', m)
         } else if (/image/.test(type)) {
-            return this.sendFile(m.chat, buffer, 'media.jpg', msg[type].caption || '', m)
+            return this.sendFile(m.chat, buffer, 'media.jpg', msg[type].caption  + "\n\nKirim Perintah .delete untuk menghapus pesan ini" || 'Kirim Perintah .delete untuk menghapus pesan ini', m)
         }
     }
 }

@@ -36,4 +36,6 @@ handler.help = ['manga <judul>']
 handler.tags = ['animanga']
 handler.command = /^(manga)$/i
 
+handler.register = true
+
 module.exports = handler

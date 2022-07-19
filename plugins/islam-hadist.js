@@ -27,7 +27,7 @@ Contoh: ${usedPrefix + command} ${args[0]} 1`
         let json = await res.json()
         let { number, arab, id } = json.find(v => v.number == args[1])
         m.reply(`
-Hadist riwayat ${args[0]} No. ${number}
+Hadis riwayat ${args[0]} No. ${number}
 
 ${arab}
 
@@ -37,7 +37,7 @@ ${id}
         throw `_*Error!*_`
     }
 }
-handler.help = ['hadist']
+handler.help = ['hadis']
 handler.tags = ['islam']
-handler.command = /^(hadist?)$/i
+handler.command = /^(hadist|hadits|hadis)$/i
 module.exports = handler

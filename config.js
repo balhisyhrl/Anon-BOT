@@ -45,9 +45,9 @@ global.eror = '_*мααƒ ѕєяνєя тι∂αк ѕтαвιℓ..*_'
 
 //========Url Template Buttons=========//
 global.dtu = 'ɪɴꜱᴛᴀɢʀᴀᴍ'
-global.urlnya = "https://www.instagram.com/balhisyhrl"
+global.urlnya = "https://www.instagram.com/xxxxxxxxx"
 global.gcbot = 'ɢʀᴏᴜᴩ ʙᴏᴛ'
-global.gcurl = "https://chat.whatsapp.com/DIN194DOTYoKckC3F4Y5Vu"
+global.gcurl = "https://chat.whatsapp.com/xxxxxxxxxxx"
 
 //============= callButtons =============//
 global.dtc = 'ᴄᴀʟʟ ᴏᴡɴᴇʀ'
@@ -70,10 +70,12 @@ global.img = pickRandom(waifu)
 global.fla = pickRandom(flaaa)
 
 //=========== Update? ==========//  
+global.iklanOwner = `IKLAN`
 global.igsessionID = data.sessionID
 global.iguserID = data.userID
 global.gembi = gembi
 global.bucin = bucin
+global.grupcurhat = 'GRUP_ID@g.us'
 global.pinhead = `_auth=1; _b=\"${data.pinterest_b}\"; _pinterest_sess=${data.pinterest_sess}; _ir=0`
 
 global.rpg = {

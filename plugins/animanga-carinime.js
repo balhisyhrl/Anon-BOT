@@ -59,4 +59,6 @@ handler.help = ['carinime <media>']
 handler.tags = ['animanga']
 handler.command = /^(wait|carinime)$/i
 
+handler.register = true
+
 module.exports = handler

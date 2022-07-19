@@ -4,7 +4,6 @@ Made by https://github.com/balhisyhrl
 const fetch = require('node-fetch')
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
-  let textfilter = text.toLowerCase().replace(listkatakotor, 'astaghfirullah')
   if (/sdec|textdecode/.test(command)){
     if (!text) throw `Mau Decode Text Apa?\nContoh :\n${usedPrefix + command} abc`
     let res = await fetch(global.API('https://balhis.codes', '/API/endec/steganotext', {
@@ -20,12 +19,13 @@ let handler = async (m, { conn, text, command, usedPrefix }) => {
       }
   } else if(/senc|textencode/.test(command)){
     if (!text) throw `Mau Sembuyiin Text Apa?\nContoh :\n${usedPrefix + command} Teks terlihat|Teks tersembunyi`
-    let [public, private] = text.split`|`
+    let textfilter = text.toLowerCase().replace(listkatakotor, 'astaghfirullah')
+    let [public, private] = textfilter.split`|`
     if(!public) throw `Teksnya mana?\nContoh :\n${usedPrefix + command} Teks terlihat|Teks tersembunyi`
     if(!private) throw `Teks yang mau disembunyiin mana?\nContoh :\n${usedPrefix + command} Teks terlihat|Teks tersembunyi`
     if(public.length == 2) throw `Minimal 2 kata pada teks terlihat`
     let res = await fetch(global.API('https://balhis.codes', '/API/endec/steganotext', {
-        public: public,
+        public: public,  
         private: private
       }))
       if (!res.ok) throw await m.reply('error')

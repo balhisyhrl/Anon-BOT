@@ -19,6 +19,8 @@ handler.help = ['ig'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 handler.command = /^(ig|igdl|instagram)$/i
 
+handler.register = true
+
 module.exports = handler
 
 const delay = time => new Promise(res => setTimeout(res, time))
