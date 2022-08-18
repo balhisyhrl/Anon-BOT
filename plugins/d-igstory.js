@@ -26,14 +26,22 @@ const defaultHeaders = {
     'cookie': `sessionid=${global.igsessionID}; ds_user_id=${global.iguserID}`
 }
 
-const { user } = await getUserByUsername({ username: args[0], sessionid: global.igsessionID })
-if(user.id == undefined) throw `USER TIDAK DITEMUKAN`
-let userIDIG = user.id
+
+//const { user } = await getUserByUsername({ username: args[0], sessionid: global.igsessionID })
+//if(user.id == undefined) throw `USER TIDAK DITEMUKAN`
+//let userIDIG = user.id
+const responseIGID = await fetch(`https://i.instagram.com/api/v1/users/web_profile_info/?username=${text}`, {
+      method: 'get',
+      headers: defaultHeaders
+  })
+let user = await responseIGID.json()
+let userIDIG = user.data.user.id
+m.reply(userIDIG)
 const response = await fetch(`https://i.instagram.com/api/v1/feed/user/${userIDIG}/story/`, {
       method: 'get',
       headers: defaultHeaders
   })
-if (!response.ok) throw await m.reply('error')
+if (!response.ok) throw `error`
 let data = await response.json()
 if(data.reel == null) throw `Stories Not Found / Private Account`
 let itemStory = data.reel.items

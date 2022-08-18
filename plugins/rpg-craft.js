@@ -10,16 +10,16 @@ let handler = async (m, { conn, command, args, usedPrefix, DevMode }) => {
         let prefix = usedPrefix
         
         const buttons1 = [
-            {buttonId: `${prefix}craft fishingrod`, buttonText: {displayText: 'Craft 🎣FishingRod'}, type: 1},
+            {buttonId: `${prefix}craft pancingan`, buttonText: {displayText: 'Craft 🎣Pancingan'}, type: 1},
             {buttonId: `${prefix}craft pickaxe`, buttonText: {displayText: 'Craft ⛏️Pickaxe'}, type: 1},
             {buttonId: `${prefix}craft sword`, buttonText: {displayText: 'Craft ⚔️Sword'}, type: 1},
         ]
         
         let lmao1 = `Gunakan Format *${usedPrefix}${command} [type]*
-contoh *${usedPrefix}${command} fishingRod*
+contoh *${usedPrefix}${command} pancingan*
 
 *📌List yang Bisa Di Craft*
-🎣FishingRod
+🎣Pancingan
 ⛏️Pickaxe
 ⚔️Sword
 `.trim()
@@ -31,12 +31,12 @@ contoh *${usedPrefix}${command} fishingRod*
         }
         
         switch (type) {
-            case 'fishingrod':
+            case 'pancingan':
                 if ((user.fishingrod * 1) > 0) {
                     const buttons = [
-                        {buttonId: `${prefix}upgrade fishingrod`, buttonText: {displayText: 'Upgrade 🎣FishingRod'}, type: 1},
+                        {buttonId: `${prefix}upgrade pancingan`, buttonText: {displayText: 'Upgrade 🎣Pancingan'}, type: 1},
                     ]
-                    let lmao = `anda sudah memiliki 🎣Fishing Rod
+                    let lmao = `anda sudah memiliki 🎣Pancingan
 untuk mengupgrade ketik *${usedPrefix}upgrade fishingrod*`.trim()
                     const buttonMessage = {
                         text: lmao,
@@ -53,7 +53,7 @@ untuk mengupgrade ketik *${usedPrefix}upgrade fishingrod*`.trim()
                 user.batu -= 20
                 user.money -= 10000
                 user.fishingroddurability += 50
-                m.reply('Succes mengcrafting 🎣FishingRod')
+                m.reply('Succes mengcrafting 🎣Pancingan')
                 break
             case 'pickaxe':
                 if ((user.pickaxe * 1) > 0) {

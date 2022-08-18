@@ -2,7 +2,6 @@ let fetch = require('node-fetch')
 let levelling = require('../lib/levelling')
 
 let handler = async (m, { conn, usedPrefix }) => {
-  // let pp = './src/avatar_contact.png'
   let who = m.sender
   let name = conn.getName(m.sender)
   let discriminator = who.substring(9, 13)
@@ -29,7 +28,23 @@ let handler = async (m, { conn, usedPrefix }) => {
       let rank = 'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=birdy-logo&doScale=true&scaleWidth=800&scaleHeight=500&text=LEVEL%20UP!'
         {
           await conn.sendButtonImg(m.chat, await (await fetch(rank)).buffer(), `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), wm, 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`)
-          //await conn.sendButtonLoc(m.chat, await (await fetch(rank)).buffer(), `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), wm, 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`, m)
+          if(user.level > 150) {
+            let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+            let pp = await conn.profilePictureUrl(who, 'image')
+            let mentionedJid = [who]
+            conn.sendFile(m.chat, pp, 'pp.jpg', `Selamat @${who.split('@')[0]} Telah Mencapai Mythical Glory\nKehebatanmu akan tersebar ke seluruh penjuru grup!`, m, false, { contextInfo: {
+              mentionedJid: mentionedJid
+            }})
+              let getGroups = await conn.groupFetchAllParticipating()
+              let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+              let listgc = groups.map(v => v.id)
+              for (let id of listgc) {
+                await conn.delay(150000)
+                await conn.sendFile(id, pp, 'pp.jpg', `Selamat @${who.split('@')[0]} Telah Mencapai Mythical Glory`, null, false, { contextInfo: {
+                  mentionedJid: mentionedJid
+                }})
+              }
+          }
         }
     }
   }

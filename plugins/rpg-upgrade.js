@@ -13,15 +13,15 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
         let prefix = usedPrefix
         
         const buttons1 = [
-            {buttonId: `${prefix}craft fishingrod`, buttonText: {displayText: `Craft ${rpg.emoticon('fishingrod')}FishingRod`}, type: 1},
+            {buttonId: `${prefix}craft pancingan`, buttonText: {displayText: `Craft ${rpg.emoticon('fishingrod')}Pancingan`}, type: 1},
             {buttonId: `${prefix}craft pickaxe`, buttonText: {displayText: `Craft ${rpg.emoticon('pickaxe')}Pickaxe`}, type: 1},
             {buttonId: `${prefix}craft sword`, buttonText: {displayText: `Craft ${rpg.emoticon('sword')}Sword`}, type: 1},
         ]
         let lmao1 = `Gunakan Format *${usedPrefix}${command} [type]*
-contoh *${usedPrefix}${command} fishingRod*
+contoh *${usedPrefix}${command} pancingan*
 
 *📌List yang Bisa Di Upgrade*
-${rpg.emoticon('fishingrod')}FishingRod
+${rpg.emoticon('fishingrod')}Pancingan
 ${rpg.emoticon('pickaxe')}Pickaxe
 ${rpg.emoticon('sword')}Sword
 `.trim()
@@ -33,13 +33,13 @@ ${rpg.emoticon('sword')}Sword
         
         }
         switch (type) {
-            case 'fishingrod':
+            case 'pancingan':
                 if (fishingrod == 0) {
                     const buttons = [
                         {buttonId: usedPrefix + `craft fishingrod`, buttonText: {displayText: `Craft ${rpg.emoticon('fishingrod')}FishingRod`}, type: 1},
                     ]
-                    let lmao = `anda belum memiliki *🎣FishingRod*
-untuk mendapatkannya ketik *${usedPrefix}craft fishingrod*`
+                    let lmao = `anda belum memiliki *🎣Pancingan*
+untuk mendapatkannya ketik *${usedPrefix}craft pancingan*`
                     const buttonMessage = {
                         text: lmao,
                         footer: wm,
@@ -48,7 +48,7 @@ untuk mendapatkannya ketik *${usedPrefix}craft fishingrod*`
                     }
                     return conn.sendMessage(m.chat, buttonMessage, { quoted: m })
                 }
-                if (fishingrod > 9) return conn.sendButton(m.chat, `*${rpg.emoticon('fishingrod')}FishingRod* kamu sudah level max`, wm, 'inventory', usedPrefix + 'inv', m)
+                if (fishingrod > 9) return conn.sendButton(m.chat, `*${rpg.emoticon('fishingrod')}Pancingan* kamu sudah level max`, wm, 'inventory', usedPrefix + 'inv', m)
                 let _kayu = fishingrod * 25
                 let _string = fishingrod * 15
                 let _money = fishingrod * 10000
@@ -59,7 +59,7 @@ untuk mendapatkannya ketik *${usedPrefix}craft fishingrod*`
                 user.money -= _money * 1
                 user.fishingroddurability = 0 
                 user.fishingroddurability += fishingrod * 50
-                conn.send2Button(m.chat, `Succes mengupgrade *${rpg.emoticon('fishingrod')}FishingRod*`, wm, 'menu', usedPrefix + 'menu', 'inventory', usedPrefix + 'inv', m)
+                conn.send2Button(m.chat, `Succes mengupgrade *${rpg.emoticon('fishingrod')}Pancingan*`, wm, 'menu', usedPrefix + 'menu', 'inventory', usedPrefix + 'inv', m)
                 break
             case 'pickaxe':
                 if (pickaxe == 0) {

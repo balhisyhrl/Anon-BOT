@@ -8,6 +8,12 @@ conn.sendButton(m.chat, `
 │ > Perfect Money : U39360574
 │ _Hasil donasi akan dipakai untuk membuat BOT ONLINE 24 JAM_
 ╰────
+╭─「 *NOTE* 」
+│ > _Tidak ada paksaan untuk kalian berdonasi~_
+│ > _Berapapun jumlahnya silahkan berdonasi~_
+╰────
+
+「 *Total Donasi Yang Masuk : Rp. 170.000* 」
 `.trim(), wm, 'Menu', usedPrefix + 'menu', m)
 }
 handler.help = ['donasi']

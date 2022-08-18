@@ -16,11 +16,14 @@ let handler = async (m, { conn, usedPrefix }) => {
     let { name, premium, premiumTime, atm, limit, warning, pasangan, money, exp, lastclaim, tiketcoin, registered, regTime, age, level, role } = global.db.data.users[who]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let username = conn.getName(who)
-    let jodoh = `Berhubungan dengan @${pasangan.split('@')[0]}`
+    let jodoh
+    if(pasangan == "") jodoh = "Jomblo"
+    else if(global.db.data.users[global.db.data.users[who].pasangan].pasangan != who) jodoh = `sedang menunggu jawaban dari @${global.db.data.users[who].pasangan.split('@')[0]}`
+    else jodoh = `Berhubungan dengan @${pasangan.split('@')[0]}`
     let str = `
 ╭───ꕥ *PROFILE* ꕥ───✾
 │•> Name: ${username} | ${name}
-│•> Status: ${pasangan ? jodoh : 'Jomblo' }
+│•> Status: ${jodoh}
 │•> Premium: ${premium ? `${conn.msToDate(premiumTime - new Date() * 1)}` : 'Gratisan'}
 │•> Number: ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
 │•> Umur: *${age == '-1' ? 'Belum Daftar' : age}*
@@ -40,13 +43,18 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { contextInfo: {
       mentionedJid: [global.db.data.users[who].pasangan]
     }})
+    if(level > 150) {
+      conn.sendFile(m.chat, pp, 'pp.jpg', `Selamat @${who.split('@')[0]} Telah Mencapai Mythical Glory`, m, false, { contextInfo: {
+        mentionedJid: mentionedJid
+      }})
+    }
     //conn.sendTemplateButtonFakeImg(m.chat, await (await fetch(pp)).buffer(), str, wm, 'Menu', `${prefix}menu`, { mentions: [m.sender] })
     //conn.send2ButtonLoc(m.chat, await (await fetch(pp)).buffer(), str, wm, `Menu`, `${prefix}menu`, 'Claim', `${prefix}claim`)
   }
 }
-handler.help = ['dompet', 'atm']
+handler.help = ['dompet']
 handler.tags = ['rpg']
-handler.command = /^(dompet|atm|pp|profile|profil|propil)$/i
+handler.command = /^(dompet|pp|profile|profil|propil)$/i
 handler.register = false
 module.exports = handler
 

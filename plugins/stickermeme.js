@@ -1,4 +1,8 @@
 const uploadImage = require('../lib/uploadImage')
+const { MessageType } = require('@adiwajshing/baileys')
+const fs = require('fs')
+//const { sticker } = require('../lib/sticker')
+const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('../lib/exif')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     let [atas, bawah] = text.toLowerCase().replace(listkatakotor, 'SENSOR').split`|`
@@ -9,7 +13,20 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let img = await q.download()
     let url = await uploadImage(img)
     let meme = `https://api.memegen.link/images/custom/${encodeURIComponent(atas ? atas : '')}/${encodeURIComponent(bawah ? bawah : '')}.png?background=${url}`
-    conn.sendStimg(m.chat, meme, m, { packname: packname, author: author })
+    let options = { packname: global.packname, author: global.author }
+      let buff = Buffer.isBuffer(meme) ? meme : /^data:.*?\/.*?;base64,/i.test(meme) ? Buffer.from(meme.split`,`[1], 'base64') : /^https?:\/\//.test(meme) ? await (await getBuffer(meme)) : fs.existsSync(meme) ? fs.readFileSync(path) : Buffer.alloc(0)
+        let buffer
+        if (options && (options.packname || options.author)) {
+            buffer = await writeExifImg(buff, options)
+        } else {
+            buffer = await imageToWebp(buff)
+        }
+      await conn.sendMessage(m.chat, { sticker: { url: buffer } }, {
+        quoted: m,
+        mimetype: 'image/webp',
+        ephemeralExpiration: 86400
+      })
+    //conn.sendStimg(m.chat, meme, m, { packname: packname, author: author })
 
 }
 handler.help = ['stickermeme <teks>|<teks>']

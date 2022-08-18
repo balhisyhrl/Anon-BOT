@@ -3,8 +3,9 @@ let fetch = require('node-fetch')
 const { servers, yta, ytv } = require('../lib/y2mate')
 let handler = async (m, { conn, command, usedPrefix, text, isPrems, isOwner }) => {
   if (!text) throw `uhm.. cari apa?\n\ncontoh:\n${usedPrefix + command} i see your monster`
+  let textfilter = text.toLowerCase().replace(listkatakotor, 'astaghfirullah').replace(/(se(g?k)s|sex|naked|sange|hentai|bugil|gay|lesbi|lesbian|homo|homosexual|lgbt|xnxx|porn|brazzer)/,'astaghfirullah')
   let chat = global.db.data.chats[m.chat]
-  let results = await yts(text)
+  let results = await yts(textfilter)
   let vid = results.all.find(video => video.seconds < 3600)
   if (!vid) throw 'Video/Audio Tidak ditemukan'
   let isVideo = /2$/.test(command)

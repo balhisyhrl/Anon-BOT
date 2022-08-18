@@ -18,6 +18,6 @@ let handler = async (m, { conn, text }) => {
 
 handler.help = ['randomquran']
 handler.tags = ['random','islam']
-handler.command = /ayat|randomayat|randomquran/i
+handler.command = /randomayat|randomquran/i
 
 module.exports = handler

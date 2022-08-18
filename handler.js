@@ -32,7 +32,7 @@ module.exports = {
                 let user = global.db.data.users[m.sender]
                 if (typeof user !== 'object') global.db.data.users[m.sender] = {}
                 if (user) {
-                    if (!isNumber(user.joincount)) user.joincount = 1
+                    if (!isNumber(user.joincount)) user.joincount = 2
                     if (!isNumber(user.healt)) user.healt = 0
                     if (!isNumber(user.level)) user.level = 1
                     if (!isNumber(user.exp)) user.exp = 0
@@ -107,12 +107,44 @@ module.exports = {
                     if (!isNumber(user.age)) user.age = -1
                     if (!isNumber(user.regTime)) user.regTime = -1
                     }
+
+                    if (!isNumber(user.apel)) user.apel = 0
+                    if (!isNumber(user.anggur)) user.anggur = 0
+                    if (!isNumber(user.jeruk)) user.jeruk = 0
+                    if (!isNumber(user.semangka)) user.semangka = 0
+                    if (!isNumber(user.mangga)) user.mangga = 0
+                    if (!isNumber(user.stroberi)) user.stroberi = 0
+                    if (!isNumber(user.pisang)) user.pisang = 0
+                    if (!isNumber(user.kayu)) user.kayu = 0
+                    if (!isNumber(user.botol)) user.botol = 0
+                    if (!isNumber(user.kardus)) user.kardus = 0
+                    if (!isNumber(user.kaleng)) user.kaleng = 0
+                    if (!isNumber(user.aqua)) user.aqua = 0
+                    if (!isNumber(user.diamond)) user.diamond = 0
+                    if (!isNumber(user.iron)) user.iron = 0
+                    if (!isNumber(user.emas)) user.emas = 0
+                    if (!isNumber(user.arlok)) user.arlok = 0
+                    if (!isNumber(user.makanan)) user.makanan = 0
+                    if (!isNumber(user.bibitanggur)) user.bibitanggur = 0
+                    if (!isNumber(user.bibitpisang)) user.bibitpisang = 0
+                    if (!isNumber(user.bibitapel)) user.bibitapel = 0
+                    if (!isNumber(user.bibitmangga)) user.bibitmangga = 0
+                    if (!isNumber(user.bibitjeruk)) user.bibitjeruk = 0
+                    if (!isNumber(user.ayamb)) user.ayamb = 0
+                    if (!isNumber(user.ayamg)) user.ayamg = 0
+                    if (!isNumber(user.sapir)) user.sapir = 0
+                    if (!isNumber(user.ssapi)) user.ssapi = 0
+                    if (!isNumber(user.esteh)) user.esteh = 0
+                    if (!isNumber(user.leleg)) user.leleg = 0
+                    if (!isNumber(user.leleb)) user.leleb = 0
+
                     if (!('premium' in user)) user.premium = false
                     if (!isNumber(user.premiumTime)) user.premiumTime = 0
                     if (!user.role) user.role = ''
                     if (!('autolevelup' in user)) user.autolevelup = false
                     if (!isNumber(user.pc)) user.pc = 0
                     //mancing
+                    if (!isNumber(user.umpan)) user.umpan = 0
                     if (!isNumber(user.as)) user.as = 0
                     if (!isNumber(user.paus)) user.paus = 0
                     if (!isNumber(user.kepiting)) user.kepiting = 0
@@ -126,6 +158,18 @@ module.exports = {
                     if (!isNumber(user.udang)) user.udang = 0
                     if (!isNumber(user.ikan)) user.ikan = 0
                     if (!isNumber(user.orca)) user.orca = 0
+                    //Roket
+                    /*if (!isNumber(user.bahanbakar)) user.bahanbakar = 0
+                    if (!('namaroket' in namaroket)) user.namaroket = 'Apollo'
+                    if (!isNumber(user.mineral)) user.mineral = 0
+                    if (!isNumber(user.batuangkasa)) user.batuangkasa = 0
+                    if (!isNumber(user.debuangkasa)) user.debuangkasa = 0
+                    if (!isNumber(user.moneysemesta)) user.moneysemesta = 0
+                    if (!isNumber(user.baranglegenda)) user.baranglegenda = 0
+                    if (!('piaraan' in piaraan)) user.piaraan = ''
+                    if (!isNumber(user.NyawaAstronout)) user.NyawaAstronout = 100
+                    if (!isNumber(user.roketlevel)) user.roketlevel = 0
+                    if (!isNumber(user.lastterbang)) user.lastterbang = 0 */
                     // kerja
                     if (!isNumber(user.atm)) user.atm = 0
                     if (!('job' in user)) user.job = 'Pengangguran'
@@ -205,6 +249,12 @@ module.exports = {
                     lastweekly: 0,
                     lastmonthly: 0,
                     registered: false,
+                    apel: 20,
+                    mangga: 20,
+                    stroberi: 20,
+                    semangka: 20,
+                    jeruk: 20,
+                    semangka: 20,
                     name: this.getName(m.sender),
                     email: '',
                     label: '',
@@ -216,6 +266,8 @@ module.exports = {
                     autolevelup: false,
                     pc: 0,
                     // Mancing cuk
+                    umpan: 0,
+                    pancingan: 0,
                     as: 0,
                     paus: 0,
                     kepiting: 0,
@@ -226,9 +278,44 @@ module.exports = {
                     lumba: 0,
                     lobster: 0,
                     hiu: 0,
+                    lele: 0,
+                    nila: 0,
+                    bawal: 0,
                     udang: 0,
                     ikan: 0,
                     orca: 0,
+                    banteng: 0,
+                    harimau: 0,
+                    gajah: 0,
+                    kambing: 0,
+                    panda: 0,
+                    buaya: 0,
+                    kerbau : 0,
+                    sapi: 0,
+                    monyet : 0,
+                    babihutan: 0,
+                    babi: 0,
+                    ayam: 0,
+                    apel: 20,
+                    ayamb: 0,
+                    ayamg: 0,
+                    ssapi: 0,
+                    sapir: 0,
+                    leleb: 0,
+                    leleg: 0,
+                    esteh: 0,
+                    //Roket
+                    /*bahanbakar: 0,
+                    namaroket: 'Apollo',
+                    mineral: 0,
+                    batuangkasa: 0,
+                    debuangkasa: 0,
+                    moneysemesta: 0,
+                    piaraan: '',
+                    NyawaAstronout: 100,
+                    baranglegenda: 0,
+                    roketlevel: 0,
+                    lastterbang: 0,*/
                     // Kerja Woy
                     atm: 0,
                     job: 'Pengangguran',
@@ -680,7 +767,7 @@ Untuk menghapus pesan yang dikirim BOT, reply pesan dengan perintah
             mentions: [participant]
         })
         await this.delay(1000)
-        this.copyNForward(msg.key.remoteJid, msg).catch(e => console.log(e, msg))
+        this.copyNForward(msg.key.remoteJid, msg, true, { ephemeralExpiration: 86400 }).catch(e => console.log(e, msg))
     }
 }
 

@@ -1,26 +1,27 @@
-const limit = 2000
-const potion = 500
-const Spotion = 150 
-const Bdiamond = 900
-const Sdiamond = 750
-const Bcommon = 200
-const Scommon = 20
-const Suncommon = 100
-const Buncommon = 600
-const Bmythic = 2000 
-const Smythic = 500
-const Blegendary = 7500 
-const Slegendary = 3000
-const Bsampah = 10
-const Ssampah = 2
-const Bkayu = 500
-const Skayu = 200
-const Bbatu = 500
-const Sbatu = 200
-const Bstring = 500
-const Sstring = 200
-const Biron = 800
-const Siron = 500
+const limit = 20000
+const potion = 5000
+const Spotion = 1500
+const Bdiamond = 9000
+const Sdiamond = 7500
+const Bcommon = 2000
+const Scommon = 200
+const Suncommon = 1000
+const Buncommon = 6000
+const Bmythic = 20000
+const Smythic = 5000
+const Blegendary = 75000
+const Slegendary = 30000
+const Bsampah = 100
+const Ssampah = 20
+const Bkayu = 5000
+const Skayu = 2000
+const Bbatu = 5000
+const Sbatu = 2000
+const Bstring = 5000
+const Sstring = 2000
+const Biron = 8000
+const Siron = 5000
+const Bumpan = 3000
 
 let handler  = async (m, { conn, command, args, usedPrefix }) => {
     const _armor = global.db.data.users[m.sender].armor
@@ -46,7 +47,8 @@ ${rpg.emoticon('armor')}Armor          :  ${armor}
 ${rpg.emoticon('kayu')}Kayu           :  ${Bkayu}
 ${rpg.emoticon('batu')}Batu           :  ${Bbatu}
 ${rpg.emoticon('string')}String         :  ${Bstring}
-${rpg.emoticon('iron')}Iron           :  ${Biron}`.trim() +
+${rpg.emoticon('iron')}Iron           :  ${Biron}
+${rpg.emoticon('fishingrod')}Umpan          :  ${Bumpan}`.trim() +
 '```'
 + '\n\n*♻️Barang                       | 💲Harga Jual*\n' +
 '```' + `
@@ -161,6 +163,14 @@ ${rpg.emoticon('iron')}Iron           :  ${Siron}\n\n
                                 global.db.data.users[m.sender].money -= armor * 1
                                 conn.sendButton(m.chat, `Succes membeli ${count} ${rpg.emoticon('armor')}Armor dengan harga ${armor} ${rpg.emoticon('money')}Money`, wm, 'inventory', usedPrefix + 'inv', m)
                             } else conn.send2Button(m.chat, `uang mu tidak cukup untuk membeli ${rpg.emoticon('armor')}armor seharga ${armor} ${rpg.emoticon('money')}money`, 'inventory', usedPrefix + 'inv', 'claim', usedPrefix + 'claim', m)
+                        
+                        break
+                    case 'umpan':
+                            if (global.db.data.users[m.sender].money >= Bumpan * count) {
+                                global.db.data.users[m.sender].umpan += count * 1
+                                global.db.data.users[m.sender].money -= Bumpan * count
+                                conn.sendButton(m.chat, `Succes membeli ${count} ${rpg.emoticon('fishingrod')}Umpan dengan harga ${Bumpan * count} ${rpg.emoticon('money')}Money`, wm, 'inventory', usedPrefix + 'inv', m)
+                            } else conn.send2Button(m.chat, `Uang anda tidak cukup untuk membeli ${count} ${rpg.emoticon('fishingrod')}Umpan dengan harga ${Bumpan * count} money`.trim(), wm, 'inventory', usedPrefix + 'inv', 'claim', usedPrefix + 'claim', m)
                         
                         break
                     default:

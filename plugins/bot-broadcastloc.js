@@ -4,6 +4,7 @@ let handler = async (m, { conn, text }) => {
     let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
     let listgc = groups.map(v => v.id)
     m.reply(`Mengirim Broadcast Ke ${listgc.length} Group Chat, Waktu Selesai ${listgc.length * 1.5} detik`)
+    let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : ''
     for (let id of listgc) {
         const buttons = [
             {buttonId: '!menu', buttonText: {displayText: `MENU`}, type: 1}
@@ -12,7 +13,7 @@ let handler = async (m, { conn, text }) => {
         await conn.delay(1500)
         await conn.sendMessage(id, { 
             image: {url: bg},
-            caption: `${text}`.trim(),
+            caption: `${teks}`.trim(),
             footer: `BROADCAST ` + wm,
             buttons: buttons,
             headerType: 4

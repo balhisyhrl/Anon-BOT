@@ -2,7 +2,6 @@ const { sticker } = require('../lib/sticker')
 const WSF = require('wa-sticker-formatter')
 const uploadImage = require('../lib/uploadImage')
 const ocrapi = require("ocr-space-api-wrapper")
-const detection = require('../lib/detect')
 const { MessageType } = require('@adiwajshing/baileys')
 const fs = require('fs')
 let handler = m => m
@@ -65,13 +64,39 @@ handler.before = async function (m) {
             let getText = hasil.ParsedResults[0].ParsedText
             let isBadword = listkatakotor.exec(getText.toLowerCase())
             if(isBadword) throw `Stiker mengandung kata kata kotor tidak di ijinkan`
-            let encmedia = await conn.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
-            await fs.unlinkSync(encmedia)
+            let options = { packname: global.packname, author: global.author }
+            let buff = Buffer.isBuffer(media) ? media : /^data:.*?\/.*?;base64,/i.test(media) ? Buffer.from(media.split`,`[1], 'base64') : /^https?:\/\//.test(media) ? await (await getBuffer(media)) : fs.existsSync(media) ? fs.readFileSync(path) : Buffer.alloc(0)
+            let buffer
+            if (options && (options.packname || options.author)) {
+                buffer = await writeExifImg(buff, options)
+            } else {
+                buffer = await imageToWebp(buff)
+            }
+            await conn.sendMessage(m.chat, { sticker: { url: buffer } }, {
+                quoted: m,
+                mimetype: 'image/webp',
+                ephemeralExpiration: 86400
+            })
+            //let encmedia = await conn.sendImageAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+            //await fs.unlinkSync(encmedia) 
         } else if (/video/.test(mime)) {
             if ((quoted.msg || quoted).seconds > 11) return m.reply('Maksimal 10 detik!')
             let media = await quoted.download()
-            let encmedia = await conn.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
-            await fs.unlinkSync(encmedia)
+            let options = { packname: global.packname, author: global.author }
+            let buff = Buffer.isBuffer(media) ? media : /^data:.*?\/.*?;base64,/i.test(media) ? Buffer.from(media.split`,`[1], 'base64') : /^https?:\/\//.test(media) ? await (await getBuffer(media)) : fs.existsSync(media) ? fs.readFileSync(path) : Buffer.alloc(0)
+            let buffer
+            if (options && (options.packname || options.author)) {
+                buffer = await writeExifVid(buff, options)
+            } else {
+                buffer = await videoToWebp(buff)
+            }
+        await conn.sendMessage(m.chat, { sticker: { url: buffer } }, {
+            quoted: m,
+            mimetype: 'image/webp',
+            ephemeralExpiration: 86400
+        })
+            //let encmedia = await conn.sendVideoAsSticker(m.chat, media, m, { packname: global.packname, author: global.author })
+            //await fs.unlinkSync(encmedia)
         }
     }
     return true

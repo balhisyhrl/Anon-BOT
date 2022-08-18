@@ -37,7 +37,7 @@ global.APIKeys = { // APIKey Here
   'https://pencarikode.xyz': 'apikeylu',
   'https://hardianto.xyz': 'hardianto',
   'https://leyscoders-api.herokuapp.com': 'apikeylu',
-  'https://api.adiofficial.xyz': 'apikey lu'
+  'https://api.adiofficial.xyz': 'apikeylu'
 }
 
 global.wait = '_*𝐬𝐞𝐝𝐚𝐧𝐠 𝐝𝐢 𝐩𝐫𝐨𝐬𝐞𝐬 ...*_'
@@ -45,13 +45,17 @@ global.eror = '_*мααƒ ѕєяνєя тι∂αк ѕтαвιℓ..*_'
 
 //========Url Template Buttons=========//
 global.dtu = 'ɪɴꜱᴛᴀɢʀᴀᴍ'
-global.urlnya = "https://www.instagram.com/xxxxxxxxx"
+global.urlnya = "https://www.instagram.com/balhisyhrl"
 global.gcbot = 'ɢʀᴏᴜᴩ ʙᴏᴛ'
-global.gcurl = "https://chat.whatsapp.com/xxxxxxxxxxx"
+global.gcurl = "https://chat.whatsapp.com/xxxxxxxxx"
 
 //============= callButtons =============//
 global.dtc = 'ᴄᴀʟʟ ᴏᴡɴᴇʀ'
 global.phn = '+62 8156299020'
+global.kontakOwn = [
+  ['6285156299020', 'Bal', 'Owner ʙᴏᴛ', 'bal@balhis.codes', true],
+  ['6285156299020', 'Iqbal', 'Owner ʙᴏᴛ', 'bal@balhis.codes', true],
+]
 
 //============= Games ================//
 global.benar = '_*Benar✅*_'
@@ -75,7 +79,7 @@ global.igsessionID = data.sessionID
 global.iguserID = data.userID
 global.gembi = gembi
 global.bucin = bucin
-global.grupcurhat = 'GRUP_ID@g.us'
+global.grupcurhat = 'ID_GRUP@g.us'
 global.pinhead = `_auth=1; _b=\"${data.pinterest_b}\"; _pinterest_sess=${data.pinterest_sess}; _ir=0`
 
 global.rpg = {
